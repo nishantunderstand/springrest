@@ -2,7 +2,6 @@ package restfulwebservices.helloworld;
 
 public class HelloWorldBean {
 
-	
 	private String message;
 
 	public HelloWorldBean(String message) {
