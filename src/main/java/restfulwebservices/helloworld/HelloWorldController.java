@@ -13,22 +13,35 @@ import org.springframework.web.bind.annotation.RestController;
  * " -> Represent String 
  */
 
+
+/**
+ * Can we use @Controller instead of @RestController ?
+ * {@link }
+ */
 @RestController
 public class HelloWorldController {
+
+	// 1. Old Approach
 	// @RequestMapping(method = RequestMethod.GET,path = "/hello-world")
-	@GetMapping(path = "/hello-world")
+	// 2. New Approach
+	 @GetMapping(path = "/hello-world")
 	public String helloworld() {
-		return "HelloWorld!!!123333-TRY NEW AND TRY AGAIN";
+		return "HelloWorld Returning String";
 	}
 	
 	@GetMapping(path = "/hello-world-bean")
 	public HelloWorldBean helloworldbean() {
-		return new HelloWorldBean("HelloWorld!!!123333bean");
+		return new HelloWorldBean("HelloWorld Returning Bean");
 	}
 	
+	/**
+	 * How to bind the variable that is send from URL.
+	 * URL -> Java Application --> Frontend
+	 */
 	@GetMapping(path = "/hello-world/path-variable/{name}")
 	public HelloWorldBean helloworldbeanPathVariableName(@PathVariable String name) {
+		
 		// return new HelloWorldBean("HelloWorld Path Variable : " + name);
-		return new HelloWorldBean(String.format("Aman1111 +++--- %s", name)) ;
+		return new HelloWorldBean(String.format("HelloWorld Returning Bean From Path Variable %s", name)) ;
 	}
 }

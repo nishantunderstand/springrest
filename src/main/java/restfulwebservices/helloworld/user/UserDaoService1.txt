@@ -19,14 +19,14 @@ import org.springframework.stereotype.Component;
 public class UserDaoService {
 	
 	private static List<User> users = new ArrayList<>();
-		
+
+	private static int userCount = 0;
+			
 	static {
-		users.add(new User(1, "Adam 1", LocalDate.now().minusYears(30)));
-		users.add(new User(2, "Eve 2", LocalDate.now().minusYears(20)));
-		users.add(new User(3, "Jim 3", LocalDate.now().minusYears(10)));
-		users.add(new User(4, "Aman 4", LocalDate.now().minusYears(10)));
-		users.add(new User(5, "Jim 3", LocalDate.now().minusYears(10)));
-		users.add(new User(6, "Aman 4", LocalDate.now().minusYears(10)));
+		users.add(new User(++userCount, "Adam 1", LocalDate.now().minusYears(30)));
+		users.add(new User(++userCount, "Eve 2", LocalDate.now().minusYears(20)));
+		users.add(new User(++userCount, "Jim 3", LocalDate.now().minusYears(10)));
+		users.add(new User(++userCount, "Aman 4", LocalDate.now().minusYears(10)));
 	}
 		
 
@@ -42,8 +42,7 @@ public class UserDaoService {
 	            return user;
 	        }
 	    }
-	    return null; 
-	    // User not found, If I return then it is an issue , But null is not an issue,WHY ?
+	    return null; // User not found
 	}
 	
 	
@@ -53,21 +52,15 @@ public class UserDaoService {
 	    	User user = iterator.next();
 	    	if(user.getId()==id) {
 	    		iterator.remove();
-	    		return; 
-	    		// Why this return is Important
+	    		return; // Why this return is Important
 	    	}
 	    }
 	    throw new UserNotFoundException("id :"+id);
 	}
 		
-	
-	public User save(User user) 
-	{ 
-		user.setId(user.getId()); 
-		users.add(user);
-		return user; 
+	public User save(User user) {
+		user.setId(++userCount);
+		users.add(user); // Adding User to users
+		return user;
 	}
-	//  Adding User to users return user; 
-	}
-	 
-
+}

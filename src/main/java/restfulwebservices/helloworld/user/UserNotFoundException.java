@@ -16,15 +16,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 */
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
 public class UserNotFoundException extends RuntimeException {
-	public UserNotFoundException(String message) {
-		super(message);
-		
-	}
 	/**
 	 * Why serialVersionUID : This is used to track file
 	 */
-	private static final long serialVersionUID = 1L;
 	private static final long serialVersionUID1 = -8839076943844028562L;
-	
-
+	public UserNotFoundException(String message) {
+		super(message);		
+	}
 }

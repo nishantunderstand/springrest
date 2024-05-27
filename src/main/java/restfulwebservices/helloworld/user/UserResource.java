@@ -3,6 +3,7 @@ package restfulwebservices.helloworld.user;
 import java.net.URI;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,28 +13,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-/**
- * This constructor is used for dependency injection. In Spring framework,
- * dependency injection is a technique whereby one object supplies the
- * dependencies of another object.
- */
+
 @RestController
 public class UserResource {
+	
+	@Autowired
 	private UserDaoService service;
-
-	// Why we are writting this ?
-	// Do we really need it ?
+	
 	/**
-	 * Approach 1: This constructor is used for dependency injection. In Spring
-	 * framework, dependency injection is a technique whereby one object supplies
-	 * the dependencies of another object. Approach 2:
+	Why we are writting this ? Do we really need it ?
+	 * Approach 1: This constructor is used for dependency injection. 
+	 * In Spring framework, dependency injection is a technique whereby one object supplies the dependencies of another object. 
 	 * 
-	 * @Autowired Annotation //@Autowired // We can use Autowiring or Constructor
-	 *            Injection
+	 * Approach 2:
+	 * @Autowired Annotation //@Autowired  
+	 * We can use Autowiring or Constructor Injection
 	 */
-	public UserResource(UserDaoService service) {
-		this.service = service;
-	}
+	
+	// Approach 1
+	/*
+	 * public UserResource(UserDaoService service) { this.service = service; }
+	 */
 
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers() {

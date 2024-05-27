@@ -5,6 +5,7 @@ public class HelloWorldBean {
 	private String message;
 
 	public HelloWorldBean(String message) {
+		System.out.println("This is helping in Printing in Console");
 		this.message = message;
 	}
 
