@@ -35,14 +35,11 @@ Here 2,200 are called path parameters.
 To get the value of Path Parameter we are using Path Variable
 Here we are fetching the value and display in JSON Format.
 
-
 @PathVariable - inside method
 Vs 
 @RequestParam - inside method
 
-
 https://howtodoinjava.com/spring-mvc/spring-pathvariable-and-requestparam/
-
 
 URL Contains Two Types of Request
 1. Path parameters
@@ -51,26 +48,22 @@ URL Contains Two Types of Request
 	@RequestParam  - Spring Framework
 	@QueryParam - JAX-RS
 
-
 https://naveen-metta.medium.com/understanding-requestparam-vs-pathvariable-in-spring-a-comprehensive-guide-41fb956e20f6
 
-
-
 Step 06 - Designing the REST API for Social Media Application
-GET - Retrieve details of a resource
-POST - Create a new resource
-PUT - Update an existing resource
-PATCH - Update part of a resource
-DELETE - Delete a resource
-
+	GET - Retrieve details of a resource
+	POST - Create a new resource
+	PUT - Update an existing resource
+	PATCH - Update part of a resource
+	DELETE - Delete a resource
 Important Response Statuses
-200 — Success
-201 — Created
-204 — No Content
-401 — Unauthorized (when authorization fails)
-400 — Bad Request (such as validation error)
-404 — Resource Not Found
-500 — Server Error
+	200 — Success
+	201 — Created
+	204 — No Content
+	401 — Unauthorized (when authorization fails)
+	400 — Bad Request (such as validation error)
+	404 — Resource Not Found
+	500 — Server Error
 Step 07 - Creating User Bean and UserDaoService
 
 Step 08 - Implementing GET Methods for User Resource

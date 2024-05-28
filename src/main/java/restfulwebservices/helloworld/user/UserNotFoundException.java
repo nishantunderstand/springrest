@@ -20,6 +20,8 @@ public class UserNotFoundException extends RuntimeException {
 	 * Why serialVersionUID : This is used to track file
 	 */
 	private static final long serialVersionUID1 = -8839076943844028562L;
+	
+	
 	public UserNotFoundException(String message) {
 		super(message);		
 	}

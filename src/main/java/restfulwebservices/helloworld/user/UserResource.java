@@ -3,7 +3,6 @@ package restfulwebservices.helloworld.user;
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 public class UserResource {
 	
-	@Autowired
+	// Approach 2
+	// @Autowired
 	private UserDaoService service;
 	
 	/**
@@ -31,9 +31,10 @@ public class UserResource {
 	 */
 	
 	// Approach 1
-	/*
-	 * public UserResource(UserDaoService service) { this.service = service; }
-	 */
+	
+	public UserResource(UserDaoService service) {
+		this.service = service;
+	}
 
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers() {
