@@ -1,25 +1,6 @@
-package restfulwebservices.helloworld.user;
-
-import java.net.URI;
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-
 @RestController
 public class UserResource {
-	
-	// Approach 2
-	// @Autowired
-	private UserDaoService service;
-	
+
 	/**
 	Why we are writting this ? Do we really need it ?
 	 * Approach 1: This constructor is used for dependency injection. 
@@ -36,10 +17,10 @@ public class UserResource {
 		this.service = service;
 	}
 
-	@GetMapping("/users")
-	public List<User> retrieveAllUsers() {
-		return service.findAll();
-	}
+	
+	// Approach 2
+	// @Autowired
+	private UserDaoService service;
 
 	/**
 	 * // Version 1 of Find One , What If User which you are searching is
