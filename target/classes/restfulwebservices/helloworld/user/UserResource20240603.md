@@ -1,5 +1,18 @@
+package restfulwebservices.helloworld.user;
+
+import java.net.URI;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 @RestController
-public class UserResource {
+public class UserResource1 {
 
 	/**
 	Why we are writting this ? Do we really need it ?
@@ -13,7 +26,7 @@ public class UserResource {
 	
 	// Approach 1
 	
-	public UserResource(UserDaoService service) {
+	public UserResource1(UserDaoService service) {
 		this.service = service;
 	}
 

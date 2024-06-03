@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UserDaoService {
+public class UserDaoService1 {
 	
 	private static List<User> users = new ArrayList<>();
 
@@ -55,7 +55,7 @@ public class UserDaoService {
 	    		return; // Why this return is Important
 	    	}
 	    }
-	    throw new UserNotFoundException("id :"+id);
+	    //throw new UserNotFoundException("id :"+id);
 	}
 		
 	public User save(User user) {

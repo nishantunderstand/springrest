@@ -5,7 +5,7 @@ import java.time.LocalDate;
  * 1. Getter and Setter
  * 2. Constructor 
  * What is the correct order ?
- * You can say as Data Class/ Entity Class / Persistance Class.
+ * You can say as Data Class/ Entity Class / persistence Class.
  * All of them are same.
  */
 

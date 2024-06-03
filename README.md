@@ -37,5 +37,18 @@ I am not able to understand String.format is the Issue,
 URL -> Java Application --> Frontend
 
 @GetMapping(path = "/hello-world/path-variable/{name}")
-public HelloWorldBean helloworldbeanPathVariableName(@PathVariable String name) {
+public HelloWorldBean helloworldbeanPathVariableName(@PathVariable String name) 
+
+
+
+
+By Creating we are mapping this Class to User
+Why are we using User Data Type , Are we run out of Data Type ?
+No, If we use Object , Java is rich in Collection , Collection Works on Object Data Type
+We can Apply Functional Programming on this.
+Like Lambda Function
+
+
+Find One ,What If User which you are searching is undefined
+if User not found, If I return then it is an issue , But null is not an issue,WHY ?
 		
