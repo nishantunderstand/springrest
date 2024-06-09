@@ -44,6 +44,7 @@ public HelloWorldBean helloworldbeanPathVariableName(@PathVariable String name)
 
 
 # UserDaoService
+
 By Creating we are mapping this Class to User
 Why are we using User Data Type , Are we run out of Data Type ?
 No, If we use Object , Java is rich in Collection , Collection Works on Object Data Type
