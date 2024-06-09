@@ -3,7 +3,7 @@ Reason ,
 Notes TOC - Section Specific Question
 README - General Question
 
-1. [NotesTOC](/Notes%20TOC.md)
+1. [Notes TOC](/Notes/Notes%20TOC.md)
 2. [README](/README.md)
 
 

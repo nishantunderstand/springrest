@@ -1,6 +1,5 @@
-1. [NotesTOC](/Notes%20TOC.md)
+1. [Notes TOC](/Notes/Notes%20TOC.md)
 2. [README](/README.md)
-
 
 - https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud
 - I am going to Study Microservices, With the Help of SpringBoot.
