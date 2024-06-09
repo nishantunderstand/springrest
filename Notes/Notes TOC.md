@@ -1,9 +1,11 @@
-- Why do i am taking Notes at 2 Place ?
-NotesTOC.md
-README.md
+# Why am I  taking Notes at 2 Place ?
+Reason , 
+Notes TOC - Section Specific Question
+README - General Question
 
--[NotesTOC](/NotesTOC.md)
--[README](/README.md)
+1. [NotesTOC](/Notes%20TOC.md)
+2. [README](/README.md)
+
 
 Section 1 : Introduction
 Step 01 - Microservices and RESTful APIs with Spring Boot and Spring Cloud - Preview
