@@ -7,14 +7,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-/**
-	By Creating we are mapping this Class to User
-	Why are we using User Data Type , Are we run out of Data Type ?
-	No, If we use Object , Java is rich in Collection , Collection Works on Object Data Type
-	We can Apply Functional Programming on this.
-	Like Lambda Function
- */
-
 @Component
 public class UserDaoService1 {
 	

@@ -1,3 +1,10 @@
+- Why do i am taking Notes at 2 Place ?
+NotesTOC.md
+README.md
+
+-[NotesTOC](/NotesTOC.md)
+-[README](/README.md)
+
 Section 1 : Introduction
 Step 01 - Microservices and RESTful APIs with Spring Boot and Spring Cloud - Preview
 Step 02 - DO NOT SKIP: Success Stories of Other Learners
