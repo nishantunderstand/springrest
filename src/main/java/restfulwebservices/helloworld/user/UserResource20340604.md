@@ -11,39 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserResource20340604 {
 
-	private UserDaoService service;
-
-	public UserResource20340604(UserDaoService service) {
-		this.service = service;
-	}
-
-	@GetMapping("/users")
-	public List<User> retrieveAllUsers() {
-		return service.findAll();
-	}
-
 	
 	
-	@GetMapping("/users/{id}")
-	public User retrieveAllUsers(@PathVariable int id) {
-		return service.findOne(id);
-	}
 
-	
-
-	// PART 1 Currently I am getting Status 200 , But I need 201, Remove SubScript
-	@PostMapping("/users")
-	public void creatUser1(@RequestBody User user) {
-		service.save(user);
-	}
-	
-	/**
-	// Part 2 ,When you need HTTP Status Code 201, Remove Subscript
-	@PostMapping("/users")
-	public ResponseEntity<User> creatUser2(@RequestBody User user) {
-		service.save(user);
-		return ResponseEntity.created(null).build();
-	}
 
 	// Part 3 When you need to see location as well, Remove Subscript
 	@PostMapping("/users")

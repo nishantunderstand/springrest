@@ -22,31 +22,28 @@
 
 
 # HelloWorldController
+- I am not able to understand String.format is the Issue,
 	Wrong @RequestMapping(method = RequestMethod.GET,path = '/hello-world')
-	I am not able to understand String.format is the Issue,
 	' -> Represent Character 
 	" -> Represent String 
  
 - Can we use @Controller instead of @RestController ?
-
-1. Old Approach
-	@RequestMapping(method = RequestMethod.GET,path = "/hello-world")
-	
-2. New Approach
-	@GetMapping(path = "/hello-world")
-
+	1. Old Approach
+		@RequestMapping(method = RequestMethod.GET,path = "/hello-world")		
+	2. New Approach
+		@GetMapping(path = "/hello-world")
 
 - How to bind the variable that is send from URL.
 	URL -> Java Application --> Frontend
-
-@GetMapping(path = "/hello-world/path-variable/{name}")
-public HelloWorldBean helloworldbeanPathVariableName(@PathVariable String name) 
+	@GetMapping(path = "/hello-world/path-variable/{name}")
+	public HelloWorldBean helloworldbeanPathVariableName(@PathVariable String name) 
 
 
 # UserDaoService
 
 By Creating we are mapping this Class to User
-Why are we using User Data Type , Are we run out of Data Type ?
+Why are we using User Data Type 
+Are we run out of Data Type ?
 No, If we use Object , Java is rich in Collection , Collection Works on Object Data Type
 We can Apply Functional Programming on this.
 Like Lambda Function

@@ -1,8 +1,7 @@
 # Why am I  taking Notes at 2 Place ?
-Reason
-
-Notes TOC - Section Specific Question
-README - General Question
+Reason : 
+	Notes TOC - Section Specific Question
+	README - General Question
 
 1. [Notes TOC](/Notes/Notes%20TOC.md)
 2. [README](/README.md)
@@ -78,6 +77,9 @@ Important Response Statuses
 	
 - Step 07 - Creating User Bean and UserDaoService
 - Step 08 - Implementing GET Methods for User Resource
+
+
+
 - Step 09 - Implementing POST Method to create User Resource
 - Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location
 - Step 11 - Implementing Exception Handling - 404 Resource Not Found
