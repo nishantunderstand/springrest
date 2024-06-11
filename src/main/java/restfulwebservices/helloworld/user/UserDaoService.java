@@ -14,10 +14,10 @@ public class UserDaoService {
 	private static int userCount = 0;
 			
 	static {
-		users.add(new User(++userCount, "Adam 1", LocalDate.now().minusYears(30)));
-		users.add(new User(++userCount, "Eve 2", LocalDate.now().minusYears(20)));
-		users.add(new User(++userCount, "Jim 3", LocalDate.now().minusYears(10)));
-		users.add(new User(++userCount, "Aman 4", LocalDate.now().minusYears(10)));
+		users.add(new User(++userCount, "Adam", LocalDate.now().minusYears(30)));
+		users.add(new User(++userCount, "Eve", LocalDate.now().minusYears(20)));
+		users.add(new User(++userCount, "Jim", LocalDate.now().minusYears(10)));
+		users.add(new User(++userCount, "Aman", LocalDate.now().minusYears(10)));
 	}
 		
 
@@ -52,7 +52,8 @@ public class UserDaoService {
 		
 	public User save(User user) {
 		user.setId(++userCount);
-		users.add(user); // Adding User to users
+		users.add(user); 
+		// Adding User to users
 		return user;
 	}
 }
