@@ -1,3 +1,4 @@
+```java
 package restfulwebservices.helloworld.user;
 
 import org.springframework.http.HttpStatus;
@@ -25,3 +26,4 @@ public class UserNotFoundException extends RuntimeException {
 		super(message);		
 	}
 }
+```
