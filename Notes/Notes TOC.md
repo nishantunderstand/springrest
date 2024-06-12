@@ -1,3 +1,10 @@
+Wednesday, June 12, 2024 6:50 PM
+No, Need to spend time on this
+This Page is moved to Notion.
+My Daily Goal is not too much.
+But Little Study,But Daily.
+
+
 # Why am I  taking Notes at 2 Place ?
 Reason : 
 	Notes TOC - Section Specific Question
@@ -7,14 +14,14 @@ Reason :
 2. [README](/README.md)
 
 
-# Section 1 : Introduction
+### Section 1 : Introduction
 - Step 01 - Microservices and RESTful APIs with Spring Boot and Spring Cloud - Preview
 - Step 02 - DO NOT SKIP: Success Stories of Other Learners
 - Step 03 - Introduction to the Course & Course Guide
 - Step 04 - A surprise! New Course Updates
 - Step 05 - DO NOT SKIP: Join in28minutes Learning Community
 
-# Section 2 : Introduction To Web Services
+### Section 2 : Introduction To Web Services
 - Step 01 - What is a Web Service?
 - Step 02 - Important How Questions related to Web Services
 - Step 03 - Web Services - Key Terminology
@@ -24,7 +31,7 @@ Reason :
 - Step 07 - SOAP vs RESTful Web Services
 - Step 08 - How to remember things for long time
 
-# Section 3 : Restful Web Services with Spring Boot -V2
+### Section 3 : Restful Web Services with Spring Boot -V2
 - DO NOT SKIP: New to Spring Boot?
 - Step 00 - Creating a REST API with Spring Boot - An Overview
 - Step 01 - Initializing a REST API Project with Spring Boot
@@ -60,13 +67,14 @@ Reason :
 	https://naveen-metta.medium.com/understanding-requestparam-vs-pathvariable-in-spring-a-comprehensive-guide-41fb956e20f6
 
 - Step 06 - Designing the REST API for Social Media Application
+
 	GET - Retrieve details of a resource
 	POST - Create a new resource
 	PUT - Update an existing resource
 	PATCH - Update part of a resource
 	DELETE - Delete a resource
 
-Important Response Statuses
+	Important Response Statuses
 	200 — Success
 	201 — Created
 	204 — No Content
@@ -77,9 +85,6 @@ Important Response Statuses
 	
 - Step 07 - Creating User Bean and UserDaoService
 - Step 08 - Implementing GET Methods for User Resource
-
-
-
 - Step 09 - Implementing POST Method to create User Resource
 - Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location
 - Step 11 - Implementing Exception Handling - 404 Resource Not Found

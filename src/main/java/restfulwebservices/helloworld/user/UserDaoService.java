@@ -2,6 +2,7 @@ package restfulwebservices.helloworld.user;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -37,18 +38,7 @@ public class UserDaoService {
 	}
 	
 	
-	/*
-	 * public void DeleteById (int id) {
-	 * for(Iterator<User> iterator = users.iterator();iterator.hasNext();) {
-	 * User user = iterator.next();
-	 * if(user.getId()==id) {
-	 * iterator.remove();
-	 * return; // Why this return is Important
-	 * }
-	 * }
-	 * //throw new UserNotFoundException("id :"+id);
-	 * }
-	 */
+	
 		
 	public User save(User user) {
 		user.setId(++userCount);
@@ -56,4 +46,20 @@ public class UserDaoService {
 		// Adding User to users
 		return user;
 	}
+	
+	
+
+	public void DeleteById(int id) {
+		for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
+			User user = iterator.next();
+			if (user.getId() == id) {
+				iterator.remove();
+				return; // Why this return is Important
+			}
+		}
+		// throw new UserNotFoundException("id :"+id);
+	}
+
+
+	
 }
