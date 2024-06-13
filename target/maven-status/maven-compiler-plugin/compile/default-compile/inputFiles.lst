@@ -1,0 +1,9 @@
+/workspace/springrest/src/main/java/restfulwebservices/RestfulWebServicesApplication.java
+/workspace/springrest/src/main/java/restfulwebservices/exception/ErrorDetails.java
+/workspace/springrest/src/main/java/restfulwebservices/exception/UserNotFoundException.java
+/workspace/springrest/src/main/java/restfulwebservices/exception/CustomizedResponseEntityExceptionHandler.java
+/workspace/springrest/src/main/java/restfulwebservices/helloworld/user/UserDaoService.java
+/workspace/springrest/src/main/java/restfulwebservices/helloworld/user/UserResource.java
+/workspace/springrest/src/main/java/restfulwebservices/helloworld/HelloWorldBean.java
+/workspace/springrest/src/main/java/restfulwebservices/helloworld/user/User.java
+/workspace/springrest/src/main/java/restfulwebservices/helloworld/HelloWorldController.java
