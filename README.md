@@ -1,10 +1,8 @@
-[Resume](src/main/java/restfulwebservices/RestfulWebServicesApplication.java)
-
-[Springin28Min-Original](https://github.com/nishantunderstand/springrest_in28min)
-
-[Github FOMO](https://github.com/nishantunderstand/springrest/commits/main/)
-[ChatGPT](https://chatgpt.com/)
-[XMind-AI](https://xmind.ai/SvDi5PPJ)
+- [Main Class](src/main/java/restfulwebservices/RestfulWebServicesApplication.java)
+- [Springin28Min-Original](https://github.com/nishantunderstand/springrest_in28min)
+- [Github FOMO](https://github.com/nishantunderstand/springrest/commits/main/)
+- [ChatGPT](https://chatgpt.com/)
+- [XMind-AI](https://xmind.ai/SvDi5PPJ)
 ---
 
 
