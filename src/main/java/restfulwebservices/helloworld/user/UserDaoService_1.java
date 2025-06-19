@@ -1,5 +1,3 @@
-```java
-
 package restfulwebservices.helloworld.user;
 
 import java.time.LocalDate;
@@ -16,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UserDaoService {
+public class UserDaoService_1 {
 	private static List<User> users = new ArrayList<>();
 	static {
 		users.add(new User(1, "Adam 1", LocalDate.now().minusYears(30)));
@@ -37,4 +35,3 @@ public class UserDaoService {
 		return null;
 	}
 }
-```

@@ -1,5 +1,4 @@
-```java
-package restfulwebservices.helloworld.user;
+package restfulwebservices.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,14 +15,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 2. Status 404 With this code  
 */
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class UserNotFoundException extends RuntimeException {
+public class UserNotFoundException_1 extends RuntimeException {
 	
 	 //Why serialVersionUID : This is used to track file
 	private static final long serialVersionUID1 = -8839076943844028562L;
-	
-	
-	public UserNotFoundException(String message) {
+		
+	public UserNotFoundException_1(String message) {
 		super(message);		
 	}
 }
-```
