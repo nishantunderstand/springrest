@@ -39,9 +39,7 @@ public class UserDaoService {
 	    return null; // User not found
 	}
 	
-	
-	
-		
+			
 	public User save(User user) {
 		user.setId(++userCount);
 		users.add(user); 
