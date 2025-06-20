@@ -1,4 +1,4 @@
-package restfulwebservices.helloworld.user;
+package restfulwebservices.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import jakarta.validation.Valid;
+import restfulwebservices.dao.UserDaoService;
 import restfulwebservices.exception.UserNotFoundException;
+import restfulwebservices.model.User;
 
 @RestController
 public class UserResource {
@@ -97,7 +99,10 @@ public class UserResource {
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 
 		User savedUser = service.save(user);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(savedUser.getId())
 				.toUri();
 		System.out.println("location :" + location);
 		return ResponseEntity.created(location).build();

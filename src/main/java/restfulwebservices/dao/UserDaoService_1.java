@@ -1,4 +1,4 @@
-package restfulwebservices.helloworld.user;
+package restfulwebservices.dao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import restfulwebservices.model.User;
+
 /**
  * Here, I am manually Adding userCount, 
- * It is good pratice.
+ * It is good practice.
  * So we are moving to a better approach.
  * That's why i am archiving it.
  */

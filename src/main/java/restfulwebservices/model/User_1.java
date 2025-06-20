@@ -1,4 +1,4 @@
-package restfulwebservices.helloworld.user;
+package restfulwebservices.model;
 
 import java.time.LocalDate;
 /**
@@ -9,20 +9,13 @@ import java.time.LocalDate;
  * All of them are same.
  */
 
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
-
 /**
  * Can we apply validation of User, Yes we can that why i am commenting this and Creating new one.
  */
 
-public class User {
+public class User_1 {
 	private Integer id;
-	
-	@Size(min=5,message = "Name should at least 5 Character")
 	private String name;
-	
-	@Past(message = "Birthdate should be in Past")
 	private LocalDate birthDate;
 
 	public Integer getId() {
@@ -49,8 +42,8 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public User(Integer id, String name, LocalDate birthDate) {
- 		super();
+	public User_1(Integer id, String name, LocalDate birthDate) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
@@ -62,4 +55,3 @@ public class User {
 	}
 
 }
-

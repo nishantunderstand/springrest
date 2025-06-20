@@ -1,4 +1,4 @@
-package restfulwebservices.helloworld.user;
+package restfulwebservices.dao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import restfulwebservices.model.User;
 
 @Component
 public class UserDaoService {
