@@ -1,0 +1,14 @@
+digraph architecture {
+  rankdir = TB;
+  node[shape=component]
+  node[shape=record]
+  node[style=filled,color="#59C8DE"];
+  {rank=same; CurrencyCalculationService, CurrencyExchangeService};
+  CurrencyExchangeService -> NamingServer;
+  CurrencyCalculationService -> NamingServer;
+  MicroserviceX -> NamingServer
+  CurrencyCalculationService[label=<Currency Conversion Microservice>];
+  CurrencyExchangeService[label=<Currency Exchange Microservice>];
+  MicroserviceX[label=<Microservice X>]
+  NamingServer[label=<Naming Server or Service Registry>]
+}

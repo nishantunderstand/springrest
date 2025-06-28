@@ -1,0 +1,7 @@
+digraph architecture {
+  rankdir=LR;
+  node[shape=component]
+  node[shape=record]
+  node[style=filled,color="#59C8DE"]
+  Microservice1 -> Microservice2 -> Microservice3 -> Microservice4 -> Microservice5
+}

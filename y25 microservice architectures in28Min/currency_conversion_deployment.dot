@@ -1,0 +1,12 @@
+digraph architecture {
+  rankdir = TB;
+  node[shape=component]
+  node[shape=record]
+  node[style=filled,color="#59C8DE"];
+  {rank=same; DEV, QA, STAGE, PROD};
+  DEV -> DEV1
+  QA -> QA1
+  QA -> QA2
+  STAGE -> STAGE1
+  PROD -> PROD1
+}

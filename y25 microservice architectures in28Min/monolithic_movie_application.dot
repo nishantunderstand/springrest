@@ -1,0 +1,9 @@
+digraph architecture {
+  rankdir=TB;
+  node[shape=component]
+  node[shape=record]
+  node[style=filled,color="#59C8DE"]
+  {rank=same; MovieApplication};
+  LARGEDB[shape=cylinder];
+  MovieApplication -> LARGEDB;
+}

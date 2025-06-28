@@ -1,0 +1,13 @@
+digraph architecture {
+  rankdir=TB;
+  node[shape=component]
+  node[shape=record]
+  node[style=filled,color="#59C8DE"]
+  {rank=same; MovieService, CustomerService, ReviewService, BookingService, FareCalculationService};
+  DB1,DB2,DB3,DB4,DB5[shape=cylinder]
+  MovieService -> DB1;
+  CustomerService -> DB2;
+  ReviewService -> DB3;
+  BookingService -> DB4;
+  FareCalculationService -> DB5;
+}

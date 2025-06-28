@@ -1,0 +1,17 @@
+digraph architecture {
+  rankdir = TB;
+  node[shape=component]
+  node[shape="rect"]
+  node[style=filled,color="#59C8DE"];
+  Database[shape=cylinder]
+  {rank=same; APIGateway, CurrencyCalculationService, CurrencyExchangeService};
+  APIGateway -> CurrencyCalculationService -> CurrencyExchangeService
+  CurrencyExchangeService -> ZipkinDistributedTracingServer
+  CurrencyCalculationService -> ZipkinDistributedTracingServer;
+  APIGateway -> ZipkinDistributedTracingServer
+  ZipkinDistributedTracingServer -> Database
+  CurrencyCalculationService[label=<Currency Conversion Microservice>];
+  CurrencyExchangeService[label=<Currency Exchange Microservice>];
+  APIGateway[label=<API Gateway>];
+  ZipkinDistributedTracingServer[label=<Distributed Tracing Server>];
+}

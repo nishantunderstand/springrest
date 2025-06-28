@@ -1,0 +1,19 @@
+digraph architecture {
+  rankdir = TB;
+  node[shape=component]
+  node[shape="rect"]
+  node[style=filled,color="#59C8DE"];
+  {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
+  {rank=same; LoadBalancer, NamingServer };
+  LoadBalancer -> CurrencyExchangeService1
+  LoadBalancer -> CurrencyExchangeService2
+  LoadBalancer -> CurrencyExchangeService3
+  CurrencyCalculationService -> LoadBalancer
+  LoadBalancer -> NamingServer
+  CurrencyCalculationService[label=<Currency Conversion Microservice>];
+  CurrencyExchangeService1[label=<Currency Exchange - Instance 1>];
+  CurrencyExchangeService2[label=<Currency Exchange - Instance 2>];
+  CurrencyExchangeService3[label=<Currency Exchange - Instance 3>];
+  LoadBalancer[label=<Load Balancer>]
+  NamingServer[label=<Naming Server>]
+}

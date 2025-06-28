@@ -1,0 +1,25 @@
+digraph architecture {
+  rankdir=LR;
+  node[shape=component]
+  node[shape=record]
+  node[style=filled,color="#59C8DE"];
+  CurrencyCalculationService -> CurrencyExchangeService -> MicroserviceX
+  subgraph CurrencyCalculationService {
+      {rank=same; CurrencyCalculationService,CCDEV,CCQA,CCSTAGE, CCPROD};
+  }
+  subgraph CurrencyExchangeService {
+      CurrencyExchangeService;
+      {rank=same; CurrencyExchangeService,CEDEV,CEQA, CESTAGE, CEPROD};
+  }
+  subgraph MicroserviceX {
+      CurrencyExchangeService;
+      {rank=same; MicroserviceX,LSDEV,LSQA, LSSTAGE, LSPROD};
+  }
+  CCDEV,CEDEV,LSDEV[label=<DEV>,width=1]
+  CCQA,CEQA,LSQA[label=<QA>,width=1]
+  CCSTAGE,CESTAGE,LSSTAGE[label=<STAGE>,width=1]
+  CCPROD,CEPROD,LSPROD[label=<PROD>,width=1]
+  CurrencyCalculationService[label=<Currency Conversion Microservice>];
+  CurrencyExchangeService[label=<Currency Exchange Microservice>];
+  MicroserviceX[label=<Microservice X>]
+}

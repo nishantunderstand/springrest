@@ -1,0 +1,10 @@
+digraph architecture {
+  rankdir=TB;
+  node[shape=component]
+  node[shape=record]
+  node[style=filled,color="#59C8DE"]
+  Microservice1 -> Microservice2 -> Microservice3
+  {rank=same; Microservice1, A1, A2};
+  {rank=same; Microservice2, B1, B2, B3, B4};
+  {rank=same; Microservice3, C1};
+}
