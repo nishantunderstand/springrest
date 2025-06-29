@@ -13,42 +13,46 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Graphviz
         run: sudo apt-get install -y graphviz
 
-      - name: Generate PNGs and collect errors
+      - name: Generate PNGs and log errors
         run: |
-          mkdir -p generated-images
+          mkdir -p diagrams/generated
           ERROR_FILE=diagrams/ERROR-IN-FILE.md
-          echo "# DOT Files with Errors" > $ERROR_FILE
-          echo "" >> $ERROR_FILE
+          echo "# DOT Files with Errors" > "$ERROR_FILE"
+          echo "" >> "$ERROR_FILE"
           found_error=0
 
           for file in diagrams/*.dot; do
             filename=$(basename "$file" .dot)
             echo "🔄 Generating image for $file"
-            if dot -Tpng "$file" -o "generated-images/$filename.png"; then
+            if dot -Tpng "$file" -o "diagrams/generated/$filename.png"; then
               echo "✅ Successfully generated $filename.png"
             else
               echo "❌ Failed to render $file"
-              echo "- $file" >> $ERROR_FILE
+              echo "- $file" >> "$ERROR_FILE"
               found_error=1
             fi
           done
 
           if [ $found_error -eq 0 ]; then
-            echo "✅ All DOT files rendered successfully." >> $ERROR_FILE
+            echo "✅ All DOT files rendered successfully." >> "$ERROR_FILE"
           fi
 
-      - name: Upload generated images
-        uses: actions/upload-artifact@v4
-        with:
-          name: dot-images
-          path: generated-images/
+      - name: Commit and push changes to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Upload error file
-        uses: actions/upload-artifact@v4
-        with:
-          name: dot-errors
-          path: diagrams/ERROR-IN-FILE.md
+          git add diagrams/generated/*.png diagrams/ERROR-IN-FILE.md
+
+          if git diff --cached --quiet; then
+            echo "📭 Nothing new to commit."
+          else
+            git commit -m "🤖 Auto-generated PNG images and error log"
+            git push
+          fi
