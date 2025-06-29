@@ -1,37 +1,33 @@
-name: Generate DOT Image
+name: Generate DOT Images
 
 on:
   push:
     paths:
-      - '**/client_side_load_balancing.dot'  # Double asterisk checks all directories
-  workflow_dispatch:
+      - 'diagrams/*.dot'   # Trigger only when DOT files change
+  workflow_dispatch:       # Also allow manual triggering
 
 jobs:
-  render-dot:
+  render-dot-images:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Gets full git history for debugging
-
-      - name: Debug file structure
-        run: |
-          ls -la
-          echo "DOT file contents:"
-          cat client_side_load_balancing.dot || echo "File not found"
 
       - name: Install Graphviz
         run: sudo apt-get install -y graphviz
 
-      - name: Generate PNG from DOT
+      - name: Generate PNGs from all DOT files
         run: |
           mkdir -p generated-images
-          dot -Tpng client_side_load_balancing.dot -o generated-images/client_side_load_balancing.png
+          for file in diagrams/*.dot; do
+            filename=$(basename "$file" .dot)
+            echo "Generating image for $file"
+            dot -Tpng "$file" -o "generated-images/$filename.png"
+          done
 
-      - name: Upload Artifact
+      - name: Upload all generated images
         uses: actions/upload-artifact@v4
         with:
-          name: dot-image
-          path: generated-images/client_side_load_balancing.png
+          name: dot-images
+          path: generated-images/
