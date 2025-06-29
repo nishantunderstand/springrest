@@ -1,12 +1,20 @@
 digraph architecture {
   rankdir = TB;
-  node[shape=component]
-  node[shape=record]
-  node[style=filled,color="#59C8DE"];
+
+  // Default style for nodes
+  node[style=filled, color="#59C8DE", shape=record];
+
+  // Define nodes with labels
+  CurrencyCalculationService [label=<Currency Conversion Microservice>];
+  CurrencyExchangeService [label=<Currency Exchange Microservice>];
+
+  // Database node with specific shape
+  Database [shape=cylinder, label="Database", style=filled, color="#59C8DE"];
+
+  // Connections
   CurrencyCalculationService -> CurrencyExchangeService;
   CurrencyExchangeService -> Database;
-  Database[shape=cylinder]
-  CurrencyCalculationService[label=<Currency Conversion Microservice>];
-  CurrencyExchangeService[label=<Currency Exchange Microservice>];
+
+  // Keep both microservices on the same rank
   {rank=same; CurrencyCalculationService, CurrencyExchangeService};
 }
