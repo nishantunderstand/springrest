@@ -21,6 +21,6 @@ echo springrest-End
 
 
 
-echo This window will close in 15 seconds...
-timeout /t 15 >nul
+echo This window will close in 2 seconds...
+timeout /t 3 >nul
 exit
