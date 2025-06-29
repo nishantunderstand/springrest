@@ -3,8 +3,8 @@ name: Generate DOT Images
 on:
   push:
     paths:
-      - 'diagrams/*.dot'   # Trigger only when DOT files change
-  workflow_dispatch:       # Also allow manual triggering
+      - 'diagrams/*.dot'
+  workflow_dispatch:
 
 jobs:
   render-dot-images:
@@ -17,17 +17,38 @@ jobs:
       - name: Install Graphviz
         run: sudo apt-get install -y graphviz
 
-      - name: Generate PNGs from all DOT files
+      - name: Generate PNGs and collect errors
         run: |
           mkdir -p generated-images
+          ERROR_FILE=diagrams/ERROR-IN-FILE.md
+          echo "# DOT Files with Errors" > $ERROR_FILE
+          echo "" >> $ERROR_FILE
+          found_error=0
+
           for file in diagrams/*.dot; do
             filename=$(basename "$file" .dot)
-            echo "Generating image for $file"
-            dot -Tpng "$file" -o "generated-images/$filename.png"
+            echo "🔄 Generating image for $file"
+            if dot -Tpng "$file" -o "generated-images/$filename.png"; then
+              echo "✅ Successfully generated $filename.png"
+            else
+              echo "❌ Failed to render $file"
+              echo "- $file" >> $ERROR_FILE
+              found_error=1
+            fi
           done
 
-      - name: Upload all generated images
+          if [ $found_error -eq 0 ]; then
+            echo "✅ All DOT files rendered successfully." >> $ERROR_FILE
+          fi
+
+      - name: Upload generated images
         uses: actions/upload-artifact@v4
         with:
           name: dot-images
           path: generated-images/
+
+      - name: Upload error file
+        uses: actions/upload-artifact@v4
+        with:
+          name: dot-errors
+          path: diagrams/ERROR-IN-FILE.md
