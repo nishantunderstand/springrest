@@ -1,0 +1,29 @@
+name: Generate DOT Image
+
+on:
+  push:
+    paths:
+      - 'client_side_load_balancing.dot'
+  workflow_dispatch:
+
+jobs:
+  render-dot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Graphviz
+        run: sudo apt-get install -y graphviz
+
+      - name: Generate PNG from DOT
+        run: |
+          mkdir -p generated-images
+          dot -Tpng client_side_load_balancing.dot -o generated-images/client_side_load_balancing.png
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dot-image
+          path: generated-images/client_side_load_balancing.png
