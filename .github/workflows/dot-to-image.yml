@@ -3,7 +3,7 @@ name: Generate DOT Image
 on:
   push:
     paths:
-      - 'client_side_load_balancing.dot'
+      - '**/client_side_load_balancing.dot'  # Double asterisk checks all directories
   workflow_dispatch:
 
 jobs:
@@ -13,6 +13,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Gets full git history for debugging
+
+      - name: Debug file structure
+        run: |
+          ls -la
+          echo "DOT file contents:"
+          cat client_side_load_balancing.dot || echo "File not found"
 
       - name: Install Graphviz
         run: sudo apt-get install -y graphviz
