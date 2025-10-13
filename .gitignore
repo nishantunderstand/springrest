@@ -1,4 +1,9 @@
 # Removed this Files
+.classpath
+.gitattributes
+.idea
+.settings
+.vscode
 .tmp.driveupload
 /target/
 *.class
