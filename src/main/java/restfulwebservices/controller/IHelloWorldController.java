@@ -20,4 +20,8 @@ public interface IHelloWorldController {
   @GetMapping("/hello-world/request-param-1")
   ResponseEntity<ApiResponse<HelloWorldResponseDTO>> hello3(@RequestParam String name);
 
+
+  //@GetMapping("/request-param-2")
+  //ResponseEntity<ApiResponse<HelloWorldResponseDTO>>
+
 }

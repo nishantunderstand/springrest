@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: restful-web-services
+  datasource:
+    url: jdbc:mysql://localhost:3306/myorm
+    username: root
+    password: root
