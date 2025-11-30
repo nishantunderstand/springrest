@@ -1,0 +1,219 @@
+package restfulwebservices.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import restfulwebservices.wrapper.ApiPageAbleResponse;
+import restfulwebservices.wrapper.ApiResponse;
+import restfulwebservices.wrapper.InfiniteScrollResponse;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/files")
+public class FileController {
+
+    @Value("${file.upload-dir}")
+    private String uploadDir;
+
+    // ================== Upload File ==================
+    @PostMapping("/upload")
+    public ApiResponse<String> upload(@RequestParam MultipartFile file) throws Exception {
+        Path dir = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Files.createDirectories(dir);
+
+        Path filePath = dir.resolve(file.getOriginalFilename());
+        Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+        return ApiResponse.ok("File uploaded successfully", file.getOriginalFilename());
+    }
+
+
+  @PostMapping("/upload-multiple")
+  public ApiResponse<List<String>> uploadMultiple(@RequestParam MultipartFile[] files) throws Exception {
+    Path dir = Paths.get(uploadDir).toAbsolutePath().normalize();
+    Files.createDirectories(dir);
+
+    List<String> uploadedFiles = new ArrayList<>();
+
+    for (MultipartFile file : files) {
+      Path filePath = dir.resolve(file.getOriginalFilename());
+      Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+      uploadedFiles.add(file.getOriginalFilename());
+    }
+
+    return ApiResponse.ok("Files uploaded successfully", uploadedFiles);
+  }
+
+
+  // ================== Download File ==================
+    @GetMapping("/download/{name}")
+    public ResponseEntity<Resource> download(@PathVariable String name) throws Exception {
+        Path filePath = Paths.get(uploadDir).resolve(name).normalize();
+        Resource resource = new UrlResource(filePath.toUri());
+
+        if (!resource.exists()) {
+            throw new RuntimeException("File not found: " + name);
+        }
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name)
+                .body(resource);
+    }
+
+    // ================== List Files (Paginated Example) ==================
+    // OFFSET ONE
+    @GetMapping("/list")
+    public ApiPageAbleResponse<String> listFiles(@RequestParam(defaultValue = "1") int page,
+                                                 @RequestParam(defaultValue = "10") int size) throws Exception {
+        Path dir = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Files.createDirectories(dir);
+
+        // List all files (for simplicity)
+        List<String> allFiles = Arrays.stream(Files.list(dir).toArray())
+                                      .map(p -> ((Path)p).getFileName().toString())
+                                      .toList();
+
+        int total = allFiles.size();
+        int fromIndex = Math.min((page - 1) * size, total);
+        int toIndex = Math.min(fromIndex + size, total);
+        List<String> filesPage = allFiles.subList(fromIndex, toIndex);
+
+        return ApiPageAbleResponse.ok("Files fetched successfully", filesPage, page, size, total);
+    }
+
+    @GetMapping("/list-offset")
+    public ApiPageAbleResponse<String> listFilesOffset(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size) throws Exception {
+
+        Path dir = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Files.createDirectories(dir);
+
+        List<String> allFiles = Files.list(dir)
+                .map(Path::getFileName)
+                .map(Path::toString)
+                .sorted()
+                .toList();
+
+        int total = allFiles.size();
+        int fromIndex = Math.min((page - 1) * size, total);
+        int toIndex = Math.min(fromIndex + size, total);
+
+        List<String> filesPage = allFiles.subList(fromIndex, toIndex);
+
+        return ApiPageAbleResponse.ok("Files fetched successfully", filesPage, page, size, total);
+    }
+
+
+
+    @GetMapping("/list-keyset")
+    public ApiPageAbleResponse<String> listFilesKeyset(
+            @RequestParam(required = false) String after,
+            @RequestParam(defaultValue = "10") int size) throws Exception {
+
+        Path dir = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Files.createDirectories(dir);
+
+        List<String> allFiles = Files.list(dir)
+                .map(Path::getFileName)
+                .map(Path::toString)
+                .sorted() // ascending order
+                .toList();
+
+        int startIndex = 0;
+        if (after != null) {
+            startIndex = allFiles.indexOf(after) + 1;
+            if (startIndex <= 0) startIndex = 0; // after not found
+        }
+
+        int toIndex = Math.min(startIndex + size, allFiles.size());
+        List<String> filesPage = allFiles.subList(startIndex, toIndex);
+
+        return ApiPageAbleResponse.ok("Files fetched successfully", filesPage, 0, size, allFiles.size());
+    }
+
+
+    @GetMapping("/list-keyset2")
+    public ApiPageAbleResponse<String> listFilesKeyset2(
+            @RequestParam(required = false) String after,
+            @RequestParam(defaultValue = "5") int size) throws Exception {
+
+        Path dir = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Files.createDirectories(dir);
+
+        // List all files in sorted order
+        List<String> allFiles = Files.list(dir)
+                .map(Path::getFileName)
+                .map(Path::toString)
+                .sorted()
+                .toList();
+
+        // Determine starting index
+        int startIndex = 0;
+        if (after != null && !after.isEmpty()) {
+            startIndex = allFiles.indexOf(after) + 1;
+            if (startIndex < 0) startIndex = 0; // cursor not found
+        }
+
+        // Slice the next batch
+        int toIndex = Math.min(startIndex + size, allFiles.size());
+        List<String> filesPage = allFiles.subList(startIndex, toIndex);
+
+        // Determine next cursor
+        String nextCursor = (toIndex < allFiles.size()) ? allFiles.get(toIndex - 1) : null;
+        boolean hasNext = toIndex < allFiles.size();
+
+        return ApiPageAbleResponse.keyset("Files fetched successfully", filesPage, nextCursor, hasNext);
+    }
+
+
+
+    @GetMapping("/list-infinite")
+    public InfiniteScrollResponse<String> listFilesInfinite(
+            @RequestParam(required = false) String cursor,
+            @RequestParam(defaultValue = "10") int size) throws Exception {
+
+        Path dir = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Files.createDirectories(dir);
+
+        List<String> allFiles = Files.list(dir)
+                .map(Path::getFileName)
+                .map(Path::toString)
+                .sorted()
+                .toList();
+
+        int startIndex = 0;
+        if (cursor != null) {
+            startIndex = allFiles.indexOf(cursor) + 1;
+            if (startIndex <= 0) startIndex = 0; // cursor not found
+        }
+
+        int toIndex = Math.min(startIndex + size, allFiles.size());
+        List<String> filesPage = allFiles.subList(startIndex, toIndex);
+
+        String nextCursor = toIndex < allFiles.size() ? allFiles.get(toIndex - 1) : null;
+
+        boolean hasNext = toIndex < allFiles.size();
+
+        return InfiniteScrollResponse.ok("Files fetched successfully", filesPage, nextCursor, hasNext);
+    }
+
+
+
+
+}
