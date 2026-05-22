@@ -4,14 +4,28 @@ server:
 spring:
   application:
     name: restful-web-services
+
   datasource:
     url: jdbc:mysql://localhost:3306/myorm
     username: root
     password: root
+
   jpa:
     hibernate:
       ddl-auto: update
+
     show-sql: true
+
     properties:
       hibernate:
-        format-sql: true
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      group-id: dlq-group
+      auto-offset-reset: earliest
+
+    listener:
+      ack-mode: record
