@@ -1,4 +1,4 @@
-package restfulwebservices._kafka;
+package restfulwebservices.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.TopicPartition;

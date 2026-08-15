@@ -1,4 +1,4 @@
-package restfulwebservices._kafka;
+package restfulwebservices.kafka;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

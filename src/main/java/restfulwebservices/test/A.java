@@ -1,4 +1,4 @@
-package restfulwebservices._test;
+package restfulwebservices.test;
 
 import java.util.ArrayList;
 import java.util.List;
